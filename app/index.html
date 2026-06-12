@@ -8,7 +8,232 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   </head>
-  <body>
+ <!-- Lead Capture Popup - Build Your Home Interiors -->
+<dialog id="leadPopup" class="lead-popup">
+  <div class="lead-popup-box">
+    <button type="button" class="popup-close" id="closePopup" aria-label="Close popup">
+      ×
+    </button>
+
+    <div class="popup-badge">Free Consultation</div>
+
+    <h2>Plan Your Dream Home</h2>
+    <p>
+      Share your details and our team will contact you for architectural or interior design services.
+    </p>
+
+    <form action="https://formsubmit.co/buildyourhomeinteriors@gmail.com" method="POST" class="lead-form">
+      <!-- FormSubmit Settings -->
+      <input type="hidden" name="_subject" value="New Website Lead - Build Your Home Interiors">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
+
+      <!-- Optional: redirect after submit -->
+      <!-- <input type="hidden" name="_next" value="https://buildyourhomeinteriors.in/thank-you.html"> -->
+
+      <!-- Lead Fields -->
+      <input 
+        type="text" 
+        name="Name" 
+        placeholder="Your Name" 
+        required
+      >
+
+      <input 
+        type="tel" 
+        name="Phone" 
+        placeholder="Phone Number" 
+        pattern="[0-9]{10}" 
+        maxlength="10"
+        required
+      >
+
+      <input 
+        type="email" 
+        name="Email" 
+        placeholder="Email ID" 
+        required
+      >
+
+      <input 
+        type="text" 
+        name="Location" 
+        placeholder="Location / City" 
+        required
+      >
+
+      <select name="Requirement" required>
+        <option value="">Select Requirement</option>
+        <option value="Architectural Design">Architectural Design</option>
+        <option value="Interior Design">Interior Design</option>
+        <option value="Both Services">Both Services</option>
+      </select>
+
+      <button type="submit">Get Callback</button>
+    </form>
+  </div>
+</dialog>
+
+<style>
+  .lead-popup {
+    border: none;
+    padding: 0;
+    background: transparent;
+    width: 92%;
+    max-width: 430px;
+  }
+
+  .lead-popup::backdrop {
+    background: rgba(0, 0, 0, 0.68);
+    backdrop-filter: blur(4px);
+  }
+
+  .lead-popup-box {
+    position: relative;
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 28px 24px 24px;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+    font-family: inherit;
+    animation: popupFade 0.35s ease;
+  }
+
+  @keyframes popupFade {
+    from {
+      opacity: 0;
+      transform: translateY(18px) scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .popup-close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    border: none;
+    background: transparent;
+    font-size: 30px;
+    line-height: 1;
+    cursor: pointer;
+    color: #333333;
+  }
+
+  .popup-badge {
+    display: inline-block;
+    margin-bottom: 12px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: #f3efe7;
+    color: #5b3a18;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .lead-popup-box h2 {
+    margin: 0 0 8px;
+    font-size: 26px;
+    line-height: 1.2;
+    color: #111111;
+  }
+
+  .lead-popup-box p {
+    margin: 0 0 20px;
+    color: #555555;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  .lead-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .lead-form input,
+  .lead-form select {
+    width: 100%;
+    padding: 13px 14px;
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    background: #ffffff;
+    font-size: 15px;
+    color: #111111;
+    outline: none;
+    box-sizing: border-box;
+  }
+
+  .lead-form input:focus,
+  .lead-form select:focus {
+    border-color: #111111;
+  }
+
+  .lead-form button {
+    margin-top: 4px;
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    background: #111111;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .lead-form button:hover {
+    background: #333333;
+  }
+
+  @media (max-width: 480px) {
+    .lead-popup-box {
+      padding: 24px 18px 20px;
+      border-radius: 18px;
+    }
+
+    .lead-popup-box h2 {
+      font-size: 22px;
+    }
+
+    .lead-popup-box p {
+      font-size: 14px;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const popup = document.getElementById("leadPopup");
+    const closeBtn = document.getElementById("closePopup");
+
+    if (!popup || !closeBtn) return;
+
+    const alreadyShown = sessionStorage.getItem("leadPopupShown");
+
+    if (!alreadyShown) {
+      setTimeout(function () {
+        if (typeof popup.showModal === "function") {
+          popup.showModal();
+          sessionStorage.setItem("leadPopupShown", "true");
+        }
+      }, 2000);
+    }
+
+    closeBtn.addEventListener("click", function () {
+      popup.close();
+    });
+
+    popup.addEventListener("click", function (event) {
+      const popupBox = document.querySelector(".lead-popup-box");
+
+      if (!popupBox.contains(event.target)) {
+        popup.close();
+      }
+    });
+  });
+</script> <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
