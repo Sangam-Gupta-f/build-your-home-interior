@@ -69,13 +69,14 @@ export default function Navigation() {
 
           {/* Right Side */}
           <div className="flex items-center gap-4">
-            <a
-              href="#contact"
-              onClick={(e) => handleNavClick(e, '#contact')}
-              className="hidden lg:inline-flex items-center px-7 py-3 bg-charcoal text-white text-xs font-medium tracking-[0.08em] uppercase rounded-full hover:bg-champagne-gold transition-colors duration-300"
-            >
-              Get a Quote
-            </a>
+          <a
+  href="/quote.html"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="hidden lg:inline-flex items-center px-7 py-3 bg-charcoal text-white text-xs font-medium tracking-[0.08em] uppercase rounded-full hover:bg-champagne-gold transition-colors duration-300"
+>
+  Get a Quote
+</a>
             <a
               href="https://www.instagram.com/buildyourhomeinteriors"
               target="_blank"
